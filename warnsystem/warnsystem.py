@@ -852,7 +852,7 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
             else:
                 warn_list.append(text)
         embed = discord.Embed(description=_("User modlog summary."))
-        embed.set_author(name=f"{user} | {user.id}", icon_url=user.display_avatar)
+        embed.set_author(name=f"{user} | {user.id}", icon_url=member.display_avatar)
         embed.add_field(
             name=_("Total number of warnings: ") + str(len(cases)), value=warn_field, inline=False
         )
