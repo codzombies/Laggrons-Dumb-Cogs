@@ -852,7 +852,7 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
             else:
                 warn_list.append(text)
         embed = discord.Embed(description=_("User modlog summary."))
-        embed.set_author(name=f"{user} | {user.id}", icon_url=user.avatar)
+        embed.set_author(name=f"{user} | {user.id}")
         embed.add_field(
             name=_("Total number of warnings: ") + str(len(cases)), value=warn_field, inline=False
         )
@@ -876,7 +876,7 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
             embed = discord.Embed(
                 description=_("Case #{number} informations").format(number=i + 1)
             )
-            embed.set_author(name=f"{user} | {user.id}", icon_url=user.avatar)
+            embed.set_author(name=f"{user} | {user.id}")
             embed.add_field(
                 name=_("Level"), value=f"{warning_str(level, False)} ({level})", inline=True
             )
@@ -1109,7 +1109,7 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
                 "This cannot be undone.**"
             ).format(member=str(member))
         else:
-            level = int(re.match(r".*\(([0-9]*)\)", old_embed.fields[0].value).group(1))
+            level = int(re.match(r"(?:.*#[0-9]{4})(?: \| )([0-9]{15,21})", old_embed.author.name).group(1))
             can_unmute = False
             add_roles = False
             if level == 2:
@@ -1125,9 +1125,9 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
             if can_unmute or add_roles:
                 description += _("\nNote: Deleting the case will also do the following:")
                 if can_unmute:
-                    description += _("\n- unmute the member")
+                    description += _("\n- Unmute the member")
                 if add_roles:
-                    description += _("\n- add all roles back to the member")
+                    description += _("\n- Add all roles back to the member")
             embed.description = description
         await message.edit(embed=embed)
         menus.start_adding_reactions(message, predicates.ReactionPredicate.YES_OR_NO_EMOJIS)
