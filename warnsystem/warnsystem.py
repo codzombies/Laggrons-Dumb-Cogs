@@ -1109,7 +1109,7 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
                 "This cannot be undone.**"
             ).format(member=str(member))
         else:
-            level = int(re.match(r".*\(([0-9]*)\)", old_embed.fields[0].value).group(1))
+            level = int(re.match(r".*\((\d+)\)", old_embed.fields[0].value).group(1))
             can_unmute = False
             add_roles = False
             if level == 2:
@@ -1125,9 +1125,9 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
             if can_unmute or add_roles:
                 description += _("\nNote: Deleting the case will also do the following:")
                 if can_unmute:
-                    description += _("\n- unmute the member")
+                    description += _("\n- Unmute the member")
                 if add_roles:
-                    description += _("\n- add all roles back to the member")
+                    description += _("\n- Add all roles back to the member")
             embed.description = description
         await message.edit(embed=embed)
         menus.start_adding_reactions(message, predicates.ReactionPredicate.YES_OR_NO_EMOJIS)
