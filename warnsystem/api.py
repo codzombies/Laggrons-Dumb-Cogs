@@ -656,7 +656,7 @@ class API:
                 log.error(
                     f"[Guild {guild.id}] Failed to format description in embed", exc_info=True
                 )
-                return "Failed to format field."
+                return "User has already left the server. Therefore the embed failed to format its field."
 
         link = re.search(r"(https?://)\S+\.(jpg|jpeg|png|gif|webm)", reason)
 
@@ -681,8 +681,8 @@ class API:
             log_embed.set_image(url=link.group())
         if not message_sent:
             log_embed.description += _(
-                "\n\n***The message could not be delivered to the user. They may have DMs "
-                "disabled, blocked the bot, or may not have a mutual server.***"
+                "\n\n*The message could not be delivered to the user. They may have DMs "
+                "disabled, blocked the bot, or may not have a mutual server.*"
             )
 
         # embed for the member in DM
