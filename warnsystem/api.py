@@ -662,7 +662,7 @@ class API:
 
         # embed for the modlog
         log_embed = discord.Embed()
-        log_embed.set_author(name=f"{member.name} | {member.id}", icon_url=member.avatar)
+        log_embed.set_author(name=f"{member.name} | {member.id}")
         log_embed.title = _("Action: {action}").format(
             level=level, action=action[0]
         )
