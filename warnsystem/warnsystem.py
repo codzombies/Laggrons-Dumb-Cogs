@@ -1101,7 +1101,7 @@ class WarnSystem(SettingsMixin, AutomodMixin, BaseCog, metaclass=CompositeMetaCl
         )
         if page == 0:
             # no warning specified, mod wants to completly clear the member
-            embed.colour = 0xEE2B2B
+            embed.colour = "0xEE2B2B"
             embed.description = _(
                 "Member {member}'s clearance. By selecting ❌ on the user modlog summary, you can "
                 "remove all warnings given to {member}. __All levels and notes are affected.__\n"
